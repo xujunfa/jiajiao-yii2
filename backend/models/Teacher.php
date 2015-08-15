@@ -41,11 +41,11 @@ class Teacher extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password', 'email', 'sex', 'strong_subjects', 'school', 'campus', 'gradation', 'grade', 'teach_courses', 'free_time'], 'required'],
-            [['sex', 'grade', 'type', 'create_time', 'last_login_time', 'login_times'], 'integer'],
-            [['username', 'email', 'school', 'campus', 'gradation'], 'string', 'max' => 32],
-            [['password', 'free_time'], 'string', 'max' => 128],
-            [['strong_subjects', 'teach_courses'], 'string', 'max' => 255]
+            // [['username', 'password', 'email', 'sex', 'strong_subjects', 'school', 'campus', 'gradation', 'grade', 'teach_courses', 'free_time'], 'required'],
+            // [['sex', 'grade', 'type', 'create_time', 'last_login_time', 'login_times'], 'integer'],
+            // [['username', 'email', 'school', 'campus', 'gradation'], 'string', 'max' => 32],
+            // [['password', 'free_time'], 'string', 'max' => 128],
+            // [['strong_subjects', 'teach_courses'], 'string', 'max' => 255]
         ];
     }
 
