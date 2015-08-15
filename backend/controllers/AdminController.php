@@ -9,20 +9,17 @@ use backend\models\Admin;
 
 class AdminController extends Controller
 {
-
-    //资源路径
-    public $assets_url;
+    
+    public $layout = 'admin';
 
     public function Init()
     {
-        $this->assets_url = Yii::$app->params['backend_assets'];
+
     }
 
     public function actionIndex()
     {
-        return $this->renderPartial('admin',[
-            'assets_url' => $this->assets_url,
-        ]); 
+        return $this->render('admin'); 
     }
 
 	public function actionLogin()
