@@ -24,13 +24,14 @@ $session = \Yii::$app->session;
          folder instead of downloading all of them to reduce the load. -->
     <link href="<?= Html::encode(\Yii::$app->params['backend_assets']).'css/admin/'; ?>skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
     <style>
-      td
-      {
+      td{
         text-align:center;
       }
-      th
-      {
+      th{
         background: #ecf0f5;
+      }
+      .box-extra{
+        height: 62px;
       }
     </style>
   </head>
