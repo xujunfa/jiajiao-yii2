@@ -33,6 +33,9 @@ $session = \Yii::$app->session;
       .box-extra{
         height: 62px;
       }
+      .self_border td{
+        border:solid 1px #59a4d5;
+      }
     </style>
   </head>
 

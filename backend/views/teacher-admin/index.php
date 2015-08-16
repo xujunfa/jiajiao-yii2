@@ -5,8 +5,6 @@ use yii\widgets\LinkPager;
 $this->title = "家教网后台-教员库";
 ?>
 
-
-
 <div class="box">
 	<div class="box-header with-border box-extra">
 	  <!-- <h2 class="box-title">教员库</h2> -->
@@ -65,7 +63,7 @@ $this->title = "家教网后台-教员库";
 	    	<td><?= Html::encode($teacher->teach_courses) ?></td>	
 	    	<td><?= Html::encode(date('Y-m-d',0)) ?></td>	
 	    	<td>
-	    		<a href="">
+	    		<a href="<?= \Yii::$app->urlManager->createUrl(['teacher-admin/view','id'=>$teacher->id]) ?>">
 	    			<i class="fa fa-fw fa-eye"></i>
 	    		</a>
 	    		<a href="">
