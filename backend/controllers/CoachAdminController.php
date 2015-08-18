@@ -14,6 +14,8 @@ use yii\filters\VerbFilter;
  */
 class CoachAdminController extends Controller
 {
+    public $enableCsrfValidation = false;
+    
     public $layout = 'admin';
 
     public function behaviors()
@@ -62,6 +64,11 @@ class CoachAdminController extends Controller
      */
     public function actionCreate()
     {
+        if(isset($_POST))
+        {
+            var_dump($_POST);
+        }
+        // exit();
         $model = new CoachPosts();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

@@ -8,7 +8,6 @@ $session = \Yii::$app->session;
 <html>
   <head>
     <meta charset="UTF-8">
-    <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -23,6 +22,10 @@ $session = \Yii::$app->session;
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link href="<?= Html::encode(\Yii::$app->params['backend_assets']).'css/admin/'; ?>skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- jQuery 2.1.4 -->
+    <script src="<?= Html::encode(\Yii::$app->params['backend_assets']).'plugins/' ?>jQuery-2.1.4.min.js"></script>
+    <script src="<?= Html::encode(\Yii::$app->params['backend_assets']).'js/plugins/'; ?>jquery.validate.js"></script>
     <style>
       td{
         text-align:center;
@@ -35,6 +38,9 @@ $session = \Yii::$app->session;
       }
       .self_border td{
         border:solid 1px #59a4d5;
+      }
+      #coach_form{
+        width: 600px;
       }
     </style>
   </head>
@@ -609,10 +615,6 @@ $session = \Yii::$app->session;
       <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
 
-
-
-    <!-- jQuery 2.1.4 -->
-    <script src="<?= Html::encode(\Yii::$app->params['backend_assets']).'plugins/' ?>jQuery-2.1.4.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
