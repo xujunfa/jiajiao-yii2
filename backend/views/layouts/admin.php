@@ -30,6 +30,9 @@ $session = \Yii::$app->session;
       td{
         text-align:center;
       }
+      .post_td{
+        text-align: left;
+      }
       th{
         background: #ecf0f5;
       }
@@ -41,6 +44,9 @@ $session = \Yii::$app->session;
       }
       #coach_form{
         width: 600px;
+      }
+      .table_box{
+        width: 75%;
       }
     </style>
   </head>

@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use backend\models\CoachPosts;
 
 /**
  * This is the model class for table "{{%business}}".
@@ -49,6 +50,11 @@ class Business extends \yii\db\ActiveRecord
             [['bussiness_number', 'customer_name', 'last_time', 'phone', 'student_message', 'coach_time', 'requirement', 'area', 'street', 'address', 'traffic', 'reward', 'registered_person'], 'string', 'max' => 255],
             [['telephone'], 'string', 'max' => 128]
         ];
+    }
+
+    public function getPost()
+    {
+        return $this->hasOne(CoachPosts::className(), ['business_id' => 'id']);
     }
 
     /**

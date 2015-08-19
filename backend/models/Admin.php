@@ -7,6 +7,8 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
+use common\models\CoachPosts;
+
 /**
  * User model
  *
@@ -59,6 +61,11 @@ class Admin extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
+    }
+
+    public function getPosts()
+    {
+        return $this->hasMany(CoachPosts::className(), ['admin_id' => 'id']);
     }
 
     /**

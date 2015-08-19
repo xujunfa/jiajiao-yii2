@@ -21,6 +21,20 @@ $().ready(function(){
 
 <form id="coach_form" method="post" action="<?= \Yii::$app->urlManager->createUrl(['coach-admin/create']); ?>">
 	<div class="form-group">
+		<label class="col-sm-2 control-label">标题</label>
+		<input type="text" name="title" class="form-control">
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">对应业务</label>
+		<select name="business_id">
+		<?php foreach($businesses as $business): ?>
+			<option value="<?= Html::encode($business->id) ?>">
+				<?= Html::encode($business->business_number) ?>
+			</option>
+		<?php endforeach; ?>
+		</select>
+	</div>
+	<div class="form-group">
 		<label class="col-sm-2 control-label">学生情况</label>
 		<textarea name="student_situation" class="form-control"></textarea>
 	</div>
@@ -34,7 +48,7 @@ $().ready(function(){
 	</div>
 	<div class="form-group">
 		<label class="col-sm-2 control-label">家教地址</label>
-		<input type="text" name="coachaddress_" class="form-control">
+		<input type="text" name="coach_address" class="form-control">
 	</div>
 	<div class="form-group">
 		<label class="col-sm-2 control-label">家教要求</label>
@@ -52,6 +66,7 @@ $().ready(function(){
 		<label class="col-sm-2 control-label">限制报名时间</label>
 		<input type="text" name="limit_time" class="form-control">
 	</div>
+	<input type="hidden" name="admin_id" value="<?= \Yii::$app->session['userid'] ?>">
 	<input type="submit">
 </form>
 
