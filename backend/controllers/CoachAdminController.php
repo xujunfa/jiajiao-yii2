@@ -9,6 +9,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\Pagination;
 
 /**
  * CoachAdminController implements the CRUD actions for CoachPosts model.
@@ -53,6 +54,24 @@ class CoachAdminController extends Controller
                                        ->one();
         var_dump($post_info->business);
         var_dump($post_info->admin);
+    }
+
+    public function actionAdmin()
+    {
+        $posts = CoachPosts::find();
+        $pagination = new Pagination([
+            'defaultPageSize' => 3,
+            'totalCount'      => $posts->count(),
+        ]);
+        $posts = $posts->offset($pagination->offset)
+                       ->limit($pagination->limit)
+                       ->with(['business','admin'])
+                       ->all();
+        return $this->render('admin', [
+            'posts'      => $posts,
+            'pagination' => $pagination,
+        ]);
+
     }
 
     /**
@@ -165,17 +184,17 @@ class CoachAdminController extends Controller
             $post_info->limit_time        = $_POST['limit_time'];
             $post_info->limit_applicants  = $_POST['limit_applicants'];
             $post_info->release_time      = time();
-        }
-        // var_dump($post_info);exit();
-
-        if ($post_info->save()) {
-           return $this->redirect(['view', 'id' => $post_info->id]);
+            if ($post_info->save()) 
+            {
+                return $this->redirect(['view', 'id' => $post_info->id]);
+            }
         } else {
             return $this->render('update', [
                 'post' => $post_info,
                 'businesses' => $pending_businesses,
             ]);
         }
+         
     }
 
     /**

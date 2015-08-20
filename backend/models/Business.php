@@ -3,7 +3,12 @@
 namespace backend\models;
 
 use Yii;
+use backend\models\Teacher;
 use backend\models\CoachPosts;
+use backend\models\BusinessCharges;
+use common\models\BusinessApply;
+use common\models\BusinessApplicants;
+use backend\models\Admin;
 
 /**
  * This is the model class for table "{{%business}}".
@@ -55,6 +60,22 @@ class Business extends \yii\db\ActiveRecord
     public function getPost()
     {
         return $this->hasOne(CoachPosts::className(), ['business_id' => 'id']);
+    }
+
+    public function getCharges()
+    {
+        return $this->hasMany(BusinessCharges::className(), ['business_id' => 'id']);
+    }
+
+    public function getApplicants()
+    {
+        return $this->hasMany(Teacher::className(), ['id' => 'teacher_id'])
+                    ->viaTable('tbl_business_applicants', ['business_id' => 'id']);
+    }
+
+    public function getAdmin()
+    {
+        return $this->hasOne(Admin::className(), ['id' => 'admin_id']);
     }
 
     /**

@@ -48,6 +48,19 @@ $session = \Yii::$app->session;
       .table_box{
         width: 75%;
       }
+      .business_list_th{
+        color: white;
+        font-weight: bold;
+      }
+      .business_table_td{
+        text-align: center;
+        background: #51a7d8;
+        color: white;
+        font-weight: bold;
+      }
+      .business_table_td2{
+        text-align: left;
+      }
     </style>
   </head>
 
@@ -343,8 +356,8 @@ $session = \Yii::$app->session;
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> 发布家教</a></li>
-                <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> 家教管理</a></li>
+                <li><a href="<?= \Yii::$app->urlManager->createUrl(['coach-admin/create']) ?>"><i class="fa fa-circle-o"></i> 发布家教</a></li>
+                <li><a href="<?= \Yii::$app->urlManager->createUrl(['coach-admin/admin']) ?>"><i class="fa fa-circle-o"></i> 家教管理</a></li>
                 <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> 业务登记</a></li>
                 <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> 业务管理</a></li>
                 <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> 待处理业务</a></li>
