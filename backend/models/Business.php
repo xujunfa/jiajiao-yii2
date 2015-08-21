@@ -70,7 +70,15 @@ class Business extends \yii\db\ActiveRecord
     public function getApplicants()
     {
         return $this->hasMany(Teacher::className(), ['id' => 'teacher_id'])
-                    ->viaTable('tbl_business_applicants', ['business_id' => 'id']);
+                    ->viaTable('tbl_business_applicants', ['business_id' => 'id'])
+                    ->with(['apply','details']);
+    }
+
+    public function getRecommend()
+    {
+        return $this->hasMany(Teacher::className(), ['id' => 'teacher_id'])
+                    ->viaTable('tbl_business_recommend', ['business_id' => 'id'])
+                    ->with(['recommend','details']);
     }
 
     public function getAdmin()

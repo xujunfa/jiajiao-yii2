@@ -61,6 +61,9 @@ $session = \Yii::$app->session;
       .business_table_td2{
         text-align: left;
       }
+      .applicants_table{
+        margin: auto;
+      }
     </style>
   </head>
 

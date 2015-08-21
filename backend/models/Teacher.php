@@ -4,6 +4,9 @@ namespace backend\models;
 
 use Yii;
 use backend\models\TeacherDetails;
+use backend\models\Business;
+use common\models\BusinessApplicants;
+use backend\models\BusinessRecommend;
 
 /**
  * This is the model class for table "{{%teacher}}".
@@ -47,6 +50,22 @@ class Teacher extends \yii\db\ActiveRecord
             // [['password', 'free_time'], 'string', 'max' => 128],
             // [['strong_subjects', 'teach_courses'], 'string', 'max' => 255]
         ];
+    }
+
+    public function getBusiness()
+    {
+        return $this->hasMany(Business::className(), ['id' => 'business_id'])
+                    ->viaTable('tbl_business_applicants', ['teacher_id' => 'id']);
+    }
+
+    public function getApply()
+    {
+        return $this->hasOne(BusinessApplicants::className(), ['teacher_id' => 'id']);
+    }
+
+    public function getRecommend()
+    {
+        return $this->hasOne(BusinessRecommend::className(), ['teacher_id' => 'id']);
     }
 
     /**

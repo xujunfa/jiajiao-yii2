@@ -11,7 +11,7 @@ $this->title = '家教业务管理';
 	  <h2 class="box-title">家教业务管理</h2>
 	</div><!-- /.box-header -->
 	<div class="box-body">
-	  <table class="table table-bordered">
+	  <table class="table table-bordered table-hover">
 	  	<tr>
 	  		<td bgcolor="#51a7d8" align="center" class="business_list_th">业务编号</td>
 	  		<td bgcolor="#51a7d8" align="center" class="business_list_th">客户名称</td>
