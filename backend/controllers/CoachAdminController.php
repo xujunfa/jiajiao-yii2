@@ -6,7 +6,7 @@ use Yii;
 use common\models\CoachPosts;
 use backend\models\Business;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
+use backend\controllers\BackendController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\Pagination;
@@ -14,7 +14,7 @@ use yii\data\Pagination;
 /**
  * CoachAdminController implements the CRUD actions for CoachPosts model.
  */
-class CoachAdminController extends Controller
+class CoachAdminController extends BackendController
 {
     public $enableCsrfValidation = false;
     

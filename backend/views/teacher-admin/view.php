@@ -17,7 +17,7 @@ use yii\helpers\Html;
 	    		<th width="90px">姓名</th><td align="left"><?= Html::encode($teacher->username) ?></td>
 	    		<th width="90px">籍贯</th><td align="left"><?= Html::encode($teacher->details->native_place) ?></td>
 	    		<th width="75px">性别</th><td align="left"><?= Html::encode($sex) ?></td>
-	    		<th rowspan="4" width="180px"><img src="http://jiajiao.jnu.edu.cn/upload/pimg/<?= Html::encode($pimg) ?>" alt=""></th>
+	    		<th rowspan="4" width="170px" height="165px"><img width="170px" height="165px" src="http://jiajiao.jnu.edu.cn/upload/pimg/<?= Html::encode($pimg) ?>" alt=""></th>
 	    	</tr>
 	    	<tr>
 	    		<th>教员编号</th><td align="left"><?= Html::encode($teacher->id) ?></td>

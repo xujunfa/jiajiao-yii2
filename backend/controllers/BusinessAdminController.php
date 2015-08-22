@@ -2,13 +2,13 @@
 
 namespace backend\controllers;
 
-use yii\web\Controller;
+use backend\controllers\BackendController;
 use backend\models\Business;
 use backend\models\BusinessCharges;
 use backend\models\Recommend;
 use yii\data\Pagination;
 
-class BusinessAdminController extends Controller
+class BusinessAdminController extends BackendController
 {
 	public $layout = 'admin';
 
@@ -21,7 +21,7 @@ class BusinessAdminController extends Controller
 		]);
 		$businesses = $businesses->offset($pagination->offset)
 							     ->limit($pagination->limit)
-							     ->with(['charges', 'applicants', 'admin'])
+							     ->with(['charges', 'applicants', 'admin', 'post'])
 							     ->all();
 		// var_dump($businesses[0]);
 		return $this->render('index', [

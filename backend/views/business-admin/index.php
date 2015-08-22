@@ -28,7 +28,7 @@ $this->title = '家教业务管理';
 			<td><?= Html::encode($business->student_message) ?></td>		
 			<td><?= Html::encode($business->admin->username) ?></td>		
 			<td><?= Html::encode(date('Y-m-d H:i:s',$business->registered_time)) ?></td>		
-			<td><?= Html::a('报名列表(0/15)') ?></td>		
+			<td><?= Html::a('报名列表（'.count($business->applicants).'/'.$business->post->limit_applicants.'）', ['view', 'id'=>$business->id]) ?></td>		
 			<td><?= Html::encode($business->is_recommend==1?'已推荐':'报名中') ?></td>		
 		</tr>
 	  	<?php endforeach; ?>

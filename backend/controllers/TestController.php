@@ -2,12 +2,12 @@
 
 namespace backend\controllers;
 
-use yii\base\Controller;
+use backend\controllers\BackendController;
 use backend\models\Teacher;
 use backend\models\TeacherOld;
 use backend\models\TeacherDetails;
 
-class TestController extends Controller 
+class TestController extends BackendController 
 {
 
 	public function actionModify1()

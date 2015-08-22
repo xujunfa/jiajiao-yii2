@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="box-body">
             <table class="table table-bordered self_border">
                 <tr>
-                    <th width="120px">对应业务</th><td class="post_td"><?= Html::a($post->business->business_number, ['view', 'id' => $post->business->id]) ?></td>
+                    <th width="120px">对应业务</th><td class="post_td"><?= Html::a($post->business->business_number, ['business-admin/view', 'id' => $post->business->id]) ?></td>
                 </tr>
                 <tr>
                     <th>学生情况</th><td class="post_td"><?= Html::encode($post->student_situation) ?></td>

@@ -3,11 +3,11 @@
 namespace backend\controllers;
 
 use Yii;
-use yii\web\Controller;
+use backend\controllers\BackendController;
 use backend\models\LoginForm;
 use backend\models\Admin;
 
-class AdminController extends Controller
+class AdminController extends BackendController
 {
     
     public $layout = 'admin';

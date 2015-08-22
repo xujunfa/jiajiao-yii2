@@ -4,7 +4,7 @@ namespace backend\models;
 
 use Yii;
 use backend\models\Teacher;
-use backend\models\CoachPosts;
+use common\models\CoachPosts;
 use backend\models\BusinessCharges;
 use common\models\BusinessApply;
 use common\models\BusinessApplicants;

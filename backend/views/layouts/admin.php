@@ -64,6 +64,18 @@ $session = \Yii::$app->session;
       .applicants_table{
         margin: auto;
       }
+      .recommend{
+        background: #dff0d8;
+      }
+      .test{
+        border-top: 1px solid #f4f4f4;
+        border-bottom: 1px solid #f4f4f4;
+        padding: 10px;
+        color: #444;
+      }
+      .timeline_item{
+        width: 65%;
+      }
     </style>
   </head>
 

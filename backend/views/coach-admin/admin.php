@@ -32,7 +32,7 @@ $this->title = "家教管理";
 	   		<td><?= Html::encode(date('Y-m-d H:i:s', $post->release_time))	 ?></td>
 	   		<td><?= Html::encode($post->limit_applicants) ?></td>		
 	   		<td><?= Html::encode($post->limit_time) ?></td>		
-	   		<td>报名列表</td>		
+	   		<td><?= Html::a(count($post->business->applicants).'/'.$post->limit_applicants, ['business-admin/view', 'id' => $post->business->id]) ?></td>		
 	   		<td></td>		
 	   	</tr>
 	   	<?php endforeach; ?>

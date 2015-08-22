@@ -93,16 +93,16 @@ $this->title = '家教业务表';
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane active" id="tab_1-1">
-                  	<table width="50%" class="table-bordered table-hover applicants_table">
+                  	<table width="50%" class="table-bordered applicants_table">
                   		<tr>
                   			<td class="business_table_td">教员编号</td>
                   			<td class="business_table_td">姓名</td>
                   			<td class="business_table_td">报名时间</td>
                   		</tr>
                   		<?php foreach($business->applicants as $applicant): ?>
-						<tr>
+						<tr <?php if($applicant->apply->is_recommend==1) echo "class='recommend'"; ?> >
 							<td><?= Html::encode($applicant->id) ?></td>
-							<td><?= Html::encode($applicant->username) ?></td>
+							<td><?= Html::a($applicant->username,['teacher-admin/view', 'id' => $applicant->id]) ?></td>
 							<td><?= Html::encode(date('Y-m-d H:i:s',$applicant->apply->apply_time)) ?></td>
 						</tr>
                   		<?php endforeach; ?>

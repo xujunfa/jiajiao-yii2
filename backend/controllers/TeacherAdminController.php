@@ -3,11 +3,11 @@
 namespace backend\controllers;
 
 use Yii;
-use yii\web\Controller;
+use backend\controllers\BackendController;
 use backend\models\Teacher;
 use yii\data\Pagination;
 
-class TeacherAdminController extends Controller
+class TeacherAdminController extends BackendController
 {
 
 	public $layout = 'admin';

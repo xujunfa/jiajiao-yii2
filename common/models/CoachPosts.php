@@ -55,7 +55,8 @@ class CoachPosts extends \yii\db\ActiveRecord
 
     public function getBusiness()
     {
-        return $this->hasOne(Business::className(), ['id' => 'business_id']);
+        return $this->hasOne(Business::className(), ['id' => 'business_id'])
+                    ->with('applicants');
     }
 
     /**
