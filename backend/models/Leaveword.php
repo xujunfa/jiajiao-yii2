@@ -33,12 +33,12 @@ class Leaveword extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['content', 'leave_uid'], 'required'],
-            [['content', 'handle_remarks'], 'string'],
-            [['handle_time'], 'integer'],
-            [['to_uid', 'leave_uid', 'is_handle'], 'string', 'max' => 50],
-            [['leave_time'], 'string', 'max' => 30],
-            [['handle_id'], 'string', 'max' => 60]
+            // [['content', 'leave_uid'], 'required'],
+            // [['content', 'handle_remarks'], 'string'],
+            // [['handle_time'], 'integer'],
+            // [['to_uid', 'leave_uid', 'is_handle'], 'string', 'max' => 50],
+            // [['leave_time'], 'string', 'max' => 30],
+            // [['handle_uid'], 'string', 'max' => 60]
         ];
     }
 

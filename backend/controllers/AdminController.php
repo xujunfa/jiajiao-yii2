@@ -12,11 +12,6 @@ class AdminController extends BackendController
     
     public $layout = 'admin';
 
-    public function Init()
-    {
-
-    }
-
     public function actionIndex()
     {
         return $this->render('admin'); 
@@ -45,7 +40,7 @@ class AdminController extends BackendController
         } else {
             return $this->renderPartial('login', [
                 'model'      => $model,
-                'assets_url' => $this->assets_url,
+                'assets_url' => \Yii::$app->params['backend_assets'],
             ]);
         }
 	}

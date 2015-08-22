@@ -1,5 +1,7 @@
 <?php 
 use yii\helpers\Html;
+use backend\components\TimeLine;
+
 $session = \Yii::$app->session;
 ?>
 
@@ -70,11 +72,24 @@ $session = \Yii::$app->session;
       .test{
         border-top: 1px solid #f4f4f4;
         border-bottom: 1px solid #f4f4f4;
+        border-left: 5px solid #367fa9;
         padding: 10px;
         color: #444;
       }
       .timeline_item{
         width: 65%;
+      }
+      .example-modal .modal {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+        display: block;
+        z-index: 1;
+      }
+      .example-modal .modal {
+        background: transparent!important;
       }
     </style>
   </head>
@@ -99,82 +114,50 @@ $session = \Yii::$app->session;
           </a>
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+
+              <!-- 留言模块开始 -->
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-envelope-o"></i>
-                  <span class="label label-success">4</span>
+                  <span class="label label-success"><?= $this->params['leavewords_count'] ?></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">目前有4条未处理的留言</li>
+                  <li class="header">
+                    <?php if($this->params['leavewords_count'] != 0): ?>
+                      目前有<span class="label label-success"><?= $this->params['leavewords_count'] ?></span>条未处理的留言
+                    <?php else: ?>
+                      目前没有需要处理的留言
+                    <?php endif; ?>
+                  </li>
                   <li>
                     <!-- inner menu: contains the actual data -->
                     <ul class="menu">
+
+                      <!-- 留言item开始 -->
+                      <?php foreach($this->params['leavewords'] as $leaveword): ?>
                       <li><!-- start message -->
                         <a href="#">
                           <div class="pull-left">
-                            <img src="<?= Html::encode(\Yii::$app->params['backend_assets']).'images/admin/' ?>user2-160x160.jpg" class="img-circle" alt="User Image" />
+                            <img src="<?= Html::encode(\Yii::$app->params['backend_assets'].'images/head_images/'.$leaveword->from->head_image) ?>" class="img-circle" alt="User Image" />
                           </div>
                           <h4>
-                            Support Team
-                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                            <?= $leaveword->from->username." <span class='text-success'><b>To</b></span> ".$leaveword->to->username ?>
+                            <small><i class="fa fa-clock-o"></i><?= ' '.(new TimeLine($leaveword->leave_time))->handle(); ?></small>
                           </h4>
-                          <p>Why not buy a new awesome theme?</p>
+                          <p><?= Html::encode($leaveword->content) ?></p>
                         </a>
                       </li><!-- end message -->
-                      <li>
-                        <a href="#">
-                          <div class="pull-left">
-                            <img src="<?= Html::encode(\Yii::$app->params['backend_assets']).'images/admin/' ?>user3-128x128.jpg" class="img-circle" alt="User Image" />
-                          </div>
-                          <h4>
-                            AdminLTE Design Team
-                            <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                          </h4>
-                          <p>Why not buy a new awesome theme?</p>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <div class="pull-left">
-                            <img src="<?= Html::encode(\Yii::$app->params['backend_assets']).'images/admin/' ?>user4-128x128.jpg" class="img-circle" alt="User Image" />
-                          </div>
-                          <h4>
-                            Developers
-                            <small><i class="fa fa-clock-o"></i> Today</small>
-                          </h4>
-                          <p>Why not buy a new awesome theme?</p>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <div class="pull-left">
-                            <img src="<?= Html::encode(\Yii::$app->params['backend_assets']).'images/admin/' ?>user3-128x128.jpg" class="img-circle" alt="User Image" />
-                          </div>
-                          <h4>
-                            Sales Department
-                            <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                          </h4>
-                          <p>Why not buy a new awesome theme?</p>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <div class="pull-left">
-                            <img src="<?= Html::encode(\Yii::$app->params['backend_assets']).'images/admin/' ?>user4-128x128.jpg" class="img-circle" alt="User Image" />
-                          </div>
-                          <h4>
-                            Reviewers
-                            <small><i class="fa fa-clock-o"></i> 2 days</small>
-                          </h4>
-                          <p>Why not buy a new awesome theme?</p>
-                        </a>
-                      </li>
+                      <?php endforeach; ?>
+                      <!-- 留言item结束 -->
+                     
                     </ul>
                   </li>
-                  <li class="footer"><a href="#">查看所有留言</a></li>
+                  <li class="footer"><?= Html::a('查看所有留言',['leaveword-admin/index'],['class' => 'btn btn-default btn-lg']) ?></li>
                 </ul>
               </li>
+              <!-- 留言模块结束 -->
+
               <!-- Notifications: style can be found in dropdown.less -->
               <li class="dropdown notifications-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -412,8 +395,8 @@ $session = \Yii::$app->session;
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> 添加留言</a></li>
-                <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> 留言管理</a></li>
+                <li><a href="<?= \yii::$app->urlManager->createUrl(['leaveword-admin/add']) ?>"><i class="fa fa-circle-o"></i> 添加留言</a></li>
+                <li><a href="<?= \yii::$app->urlManager->createUrl(['leaveword-admin/index']) ?>"><i class="fa fa-circle-o"></i> 留言管理</a></li>
               </ul>
             </li>
 

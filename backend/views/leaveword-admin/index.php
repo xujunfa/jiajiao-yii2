@@ -1,5 +1,7 @@
 <?php 
 use yii\helpers\Html;
+use yii\widgets\LinkPager;
+use backend\components\TimeLine; 
  ?>
 
 <!-- row -->
@@ -30,14 +32,14 @@ use yii\helpers\Html;
         <li class="timeline_item">
           <i class="fa fa-envelope bg-<?= $color ?>"></i>
           <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i><?= Html::encode(date('H:i', $leaveword->leave_time)) ?></span>
+            <span class="time"><i class="fa fa-clock-o"></i><?= Html::encode((new TimeLine($leaveword->leave_time))->handle()) ?></span>
             <h3 class="timeline-header">
-              <a href="#"><?= Html::encode($leaveword->id>=653?$leaveword->from->username:$leaveword->leave_uid) ?></a> To
+              <a href="#"><?= Html::encode($leaveword->id>=651?$leaveword->from->username:$leaveword->leave_uid) ?></a> To
               <a href="#">
                 <?php 
-                  if($leaveword->id>=653 && !$leaveword->to_uid){
+                  if($leaveword->id>=651 && !$leaveword->to_uid){
                     echo '所有人';
-                  }else if($leaveword->id>=653 && $leaveword->to_uid){
+                  }else if($leaveword->id>=651 && $leaveword->to_uid){
                     echo $leaveword->to->username;
                   }else{
                     echo $leaveword->to_uid;
@@ -68,3 +70,7 @@ use yii\helpers\Html;
     </ul>
   </div><!-- /.col -->
 </div><!-- /.row -->
+
+<div class="box-footer clearfix">
+    <?= LinkPager::widget(['pagination' => $pagination]) ?>
+</div>
