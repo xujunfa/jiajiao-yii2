@@ -32,7 +32,7 @@ use backend\components\TimeLine;
         <li class="timeline_item">
           <i class="fa fa-envelope bg-<?= $color ?>"></i>
           <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i><?= Html::encode((new TimeLine($leaveword->leave_time))->handle()) ?></span>
+            <span class="time"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;<?= Html::encode((new TimeLine($leaveword->leave_time))->handle()) ?></span>
             <h3 class="timeline-header">
               <a href="#"><?= Html::encode($leaveword->id>=651?$leaveword->from->username:$leaveword->leave_uid) ?></a> To
               <a href="#">
@@ -52,12 +52,13 @@ use backend\components\TimeLine;
             </div>
             <?php if($leaveword->is_handle==1): ?>
               <div class="test">
-                <?= Html::encode($leaveword->handler->username).'：' ?>
+                <?= Html::encode($leaveword->handler->username).' 已处理：' ?>
                 <?= Html::encode($leaveword->handle_remarks) ?>
               </div>
             <?php endif; ?>
             <div class="timeline-footer">
-              <a class="btn btn-primary btn-xs">处理</a>
+              <?= Html::a('处理',['handle','id'=>$leaveword->id],['class'=>'btn btn-primary btn-xs']) ?>
+              <!-- <a class="btn btn-primary btn-xs">处理</a> -->
               <a class="btn btn-danger btn-xs">删除</a>
             </div>
           </div>

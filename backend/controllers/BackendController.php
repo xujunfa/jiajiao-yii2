@@ -5,6 +5,7 @@ namespace backend\controllers;
 use yii\web\Controller;
 use backend\models\Leaveword;
 use backend\components\TimeLine;
+use backend\models\Business;
 
 class BackendController extends Controller
 {
@@ -18,13 +19,15 @@ class BackendController extends Controller
 									   ->with(['from','to'])
 									   ->orderBy(['leave_time'=>SORT_DESC])
 									   ->all();
-		// var_dump(count($leavewords));exit();
+		$businesses = Business::find()->where("is_recommend=0")
+									  ->with(['admin'])
+									  ->orderBy(['registered_time'=>SORT_DESC])
+									  ->all();
+		// var_dump($businesses);exit();
 		$view->params['leavewords']       = $leavewords;
 		$view->params['leavewords_count'] = count($leavewords);
-
-		// var_dump($view->params['leavewords'][0]->from->head_image);exit();
-
-		// echo (new TimeLine(1439260977))->handle();exit();
+		$view->params['businesses']       = $businesses;
+		$view->params['businesses_count'] = count($businesses);
 
 	}
 

@@ -49,11 +49,11 @@ class Business extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['student_situation', 'remarks'], 'string'],
-            [['registered_time'], 'required'],
-            [['registered_time', 'is_recommend'], 'integer'],
-            [['bussiness_number', 'customer_name', 'last_time', 'phone', 'student_message', 'coach_time', 'requirement', 'area', 'street', 'address', 'traffic', 'reward', 'registered_person'], 'string', 'max' => 255],
-            [['telephone'], 'string', 'max' => 128]
+            // [['student_situation', 'remarks'], 'string'],
+            // [['registered_time'], 'required'],
+            // [['registered_time', 'is_recommend'], 'integer'],
+            // [['bussiness_number', 'customer_name', 'last_time', 'phone', 'student_message', 'coach_time', 'requirement', 'area', 'street', 'address', 'traffic', 'reward', 'registered_person'], 'string', 'max' => 255],
+            // [['telephone'], 'string', 'max' => 128]
         ];
     }
 

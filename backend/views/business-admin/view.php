@@ -9,8 +9,8 @@ $this->title = '家教业务表';
 <div class="coach-posts-view">
 
     <p>
-        <?= Html::a('编辑', ['update', 'id' => $post->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('删除', ['delete', 'id' => $post->id], [
+        <?= Html::a('编辑', ['update', 'id' => $business->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('删除', ['delete', 'id' => $business->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -93,25 +93,28 @@ $this->title = '家教业务表';
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane active" id="tab_1-1">
+                    <?php if(count($business->applicants)!=0): ?>
                   	<table width="50%" class="table-bordered applicants_table">
                   		<tr>
                   			<td class="business_table_td">教员编号</td>
                   			<td class="business_table_td">姓名</td>
                   			<td class="business_table_td">报名时间</td>
                   		</tr>
-                  		<?php foreach($business->applicants as $applicant): ?>
-						<tr <?php if($applicant->apply->is_recommend==1) echo "class='recommend'"; ?> >
-							<td><?= Html::encode($applicant->id) ?></td>
-							<td><?= Html::a($applicant->username,['teacher-admin/view', 'id' => $applicant->id]) ?></td>
-							<td><?= Html::encode(date('Y-m-d H:i:s',$applicant->apply->apply_time)) ?></td>
-						</tr>
+                  		
+                      <?php foreach($business->applicants as $applicant): ?>
+          						<tr <?php if($applicant->apply->is_recommend==1) echo "class='recommend'"; ?> >
+          							<td><?= Html::encode($applicant->id) ?></td>
+          							<td><?= Html::a($applicant->username,['teacher-admin/view', 'id' => $applicant->id]) ?></td>
+          							<td><?= Html::encode(date('Y-m-d H:i:s',$applicant->apply->apply_time)) ?></td>
+          						</tr>
                   		<?php endforeach; ?>
                   		
                   	</table>  
+                    <?php endif; ?>
 
                   </div><!-- /.tab-pane -->
                   <div class="tab-pane" id="tab_2-2">
-                 	 <table width="70%" class="table-bordered table-hover applicants_table">
+                 	  <table width="70%" class="table-bordered table-hover applicants_table">
                   	 	<?php foreach($business->charges as $charge): ?>
                   	 	<tr>
                   	 		<td class="business_table_td" width="15%">收据编号</td><td width="40%"><?= Html::encode($charge->receipt) ?></td>

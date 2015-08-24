@@ -47,6 +47,9 @@ $session = \Yii::$app->session;
       #coach_form{
         width: 600px;
       }
+      .coach_form{
+        display: inline;
+      }
       .table_box{
         width: 75%;
       }
@@ -90,6 +93,10 @@ $session = \Yii::$app->session;
       }
       .example-modal .modal {
         background: transparent!important;
+      }
+      .leaveword_select{
+        display: inline;
+        width: 20%;
       }
     </style>
   </head>
@@ -137,7 +144,7 @@ $session = \Yii::$app->session;
                       <!-- 留言item开始 -->
                       <?php foreach($this->params['leavewords'] as $leaveword): ?>
                       <li><!-- start message -->
-                        <a href="#">
+                        <a href="<?= \Yii::$app->urlManager->createUrl(['leaveword-admin/handle', 'id'=>$leaveword->id]) ?>">
                           <div class="pull-left">
                             <img src="<?= Html::encode(\Yii::$app->params['backend_assets'].'images/head_images/'.$leaveword->from->head_image) ?>" class="img-circle" alt="User Image" />
                           </div>
@@ -162,14 +169,23 @@ $session = \Yii::$app->session;
               <li class="dropdown notifications-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning">10</span>
+                  <span class="label label-warning"><?= $this->params['businesses_count'] ?></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">10份未处理业务</li>
+                  <li class="header">
+                    <span class="label label-warning"><?= $this->params['businesses_count'] ?></span>份未处理业务
+                  </li>
                   <li>
                     <!-- inner menu: contains the actual data -->
                     <ul class="menu">
-                      <li>
+                      <?php foreach($this->params['businesses'] as $business): ?>
+                        <li>
+                          <a href="<?= \Yii::$app->urlManager->createUrl(['business-admin/view','id'=>$business->id]) ?>">
+                            <i class="fa fa-users text-aqua"></i> <?= Html::encode($business->business_number.'（登记人:'.$business->admin->username.'）') ?>
+                          </a>
+                        </li>
+                      <?php endforeach; ?>
+                      <!-- <li>
                         <a href="#">
                           <i class="fa fa-users text-aqua"></i> 5 new members joined today
                         </a>
@@ -193,7 +209,7 @@ $session = \Yii::$app->session;
                         <a href="#">
                           <i class="fa fa-user text-red"></i> You changed your username
                         </a>
-                      </li>
+                      </li> -->
                     </ul>
                   </li>
                   <li class="footer"><a href="#">查看全部</a></li>
@@ -356,8 +372,8 @@ $session = \Yii::$app->session;
               <ul class="treeview-menu">
                 <li><a href="<?= \Yii::$app->urlManager->createUrl(['coach-admin/create']) ?>"><i class="fa fa-circle-o"></i> 发布家教</a></li>
                 <li><a href="<?= \Yii::$app->urlManager->createUrl(['coach-admin/admin']) ?>"><i class="fa fa-circle-o"></i> 家教管理</a></li>
-                <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> 业务登记</a></li>
-                <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> 业务管理</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i> 业务登记</a></li>
+                <li><a href="<?= \Yii::$app->urlManager->createUrl(['business-admin/index']) ?>"><i class="fa fa-circle-o"></i> 业务管理</a></li>
                 <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> 待处理业务</a></li>
               </ul>
             </li>

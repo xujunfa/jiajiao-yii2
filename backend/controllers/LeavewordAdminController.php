@@ -5,6 +5,7 @@ namespace backend\controllers;
 use backend\models\Leaveword;
 use backend\controllers\BackendController;
 use yii\data\Pagination;
+use backend\models\Admin;
 
 class LeavewordAdminController extends BackendController
 {
@@ -35,11 +36,11 @@ class LeavewordAdminController extends BackendController
 
 	public function actionHandle($id)
 	{
+		$leaveword = Leaveword::find()->where('id=:id',[':id' => $id])
+									  ->with('from','to')
+									  ->one();
 		if($_POST)
 		{
-			// var_dump($_POST);exit();
-			$leaveword = Leaveword::find()->where('id=:id',[':id' =>$id])
-										  ->one();
 			$leaveword->handle_remarks = $_POST['remarks'];
 			$leaveword->handle_uid     = \Yii::$app->session['userid'];
 			$leaveword->handle_time    = time();
@@ -47,11 +48,34 @@ class LeavewordAdminController extends BackendController
 			if($leaveword->save())
 				echo "<h1>OK</h1>";exit();	
 		}
-		$leaveword = Leaveword::find()->where('id=:id',[':id' => $id])
-									  ->with('from','to')
-									  ->one();
+		
 		return $this->render('handle', [
 			'leaveword' => $leaveword,
+		]);
+	}
+
+	public function actionAdd()
+	{
+		$leaveword = new Leaveword;
+		if($_POST)
+		{
+			$leaveword->to_uid     = $_POST['to_uid'];
+			$leaveword->content    = $_POST['content'];
+			$leaveword->leave_time = time();
+			$leaveword->leave_uid  = \Yii::$app->session['userid'];
+			if($leaveword->save())
+				echo "<h1>留言成功</h1>";exit();
+		}
+		$admins = Admin::findBySql('SELECT id,username FROM tbl_admin')->asArray()->all();
+		$admin_map[0] = '所有人';
+		foreach ($admins as $admin) 
+		{
+			$admin_map[$admin['id']] = $admin['username'];	
+		}
+		unset($admin_map[\Yii::$app->session['userid']]);
+		// var_dump($admin_map);exit();
+		return $this->render('add', [
+			'admin_map' => $admin_map,
 		]);
 	}
 

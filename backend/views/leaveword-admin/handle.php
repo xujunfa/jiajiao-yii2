@@ -28,7 +28,7 @@ use yii\helpers\Html;
 	      </div>
 	      <div>
 	      	<form name="handle" method="post" action="<?= \Yii::$app->urlManager->createUrl(['leaveword-admin/handle','id'=>$leaveword->id]) ?>">
-	      		<textarea class="form-control" name="remarks" id="" rows="4" placeholder="请输入您的处理批注..."></textarea>
+	      		<textarea class="form-control" name="remarks" rows="4" placeholder="请输入您的处理批注..."><?= Html::encode($leaveword->handle_remarks) ?></textarea>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">删除留言</button>
