@@ -35,10 +35,10 @@ class BusinessRecommend extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['business_id'], 'required'],
-            [['business_id', 'recommend_time', 'operator_id', 'handle_time'], 'integer'],
-            [['recommend_remarks', 'reason'], 'string'],
-            [['teacher_recommend', 'contact', 'recommend_people', 'result'], 'string', 'max' => 255]
+            // [['business_id'], 'required'],
+            // [['business_id', 'recommend_time', 'operator_id', 'handle_time'], 'integer'],
+            // [['recommend_remarks', 'reason'], 'string'],
+            // [['teacher_recommend', 'contact', 'recommend_people', 'result'], 'string', 'max' => 255]
         ];
     }
 

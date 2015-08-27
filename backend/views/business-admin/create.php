@@ -25,7 +25,7 @@ $this->title = '家教业务表';
             <center>
                 <h2 class="box-title">家教业务登记表</h2><br>
                 <div class="pull-right">
-                  <code>业务编号：</code> <input name="business_number" type="text">
+                  <code>业务编号：</code> <input name="business_number" value="<?= $business_number; ?>" type="text">
                 </div>
             </center>
 

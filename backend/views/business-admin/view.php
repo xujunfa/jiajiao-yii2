@@ -1,8 +1,30 @@
 <?php 
 
 use yii\helpers\Html;
+use yii\bootstrap\Alert;
 
 $this->title = '家教业务表';
+
+ ?>
+
+ <?php 
+
+ if( \Yii::$app->getSession()->hasFlash('success') ) {
+  echo Alert::widget([
+    'options' => [
+      'class' => 'alert-success', //这里是提示框的class
+    ],
+    'body' => \Yii::$app->getSession()->getFlash('success'), //消息体
+  ]);
+}
+// if( \Yii::$app->getSession()->hasFlash('error') ) {
+//   echo Alert::widget([
+//     'options' => [
+//       'class' => 'alert-error',
+//     ],
+//     'body' => \Yii::$app->getSession()->getFlash('error'),
+//   ]);
+// }
 
  ?>
 
@@ -99,13 +121,17 @@ $this->title = '家教业务表';
                   			<td class="business_table_td">教员编号</td>
                   			<td class="business_table_td">姓名</td>
                   			<td class="business_table_td">报名时间</td>
+                        <td class="business_table_td">操作</td>
                   		</tr>
                   		
                       <?php foreach($business->applicants as $applicant): ?>
-          						<tr <?php if($applicant->apply->is_recommend==1) echo "class='recommend'"; ?> >
+          						<tr <?php if($applicant->apply->is_recommend==1) echo "class='recommend' disabled='disabled'"; ?> >
           							<td><?= Html::encode($applicant->id) ?></td>
           							<td><?= Html::a($applicant->username,['teacher-admin/view', 'id' => $applicant->id]) ?></td>
           							<td><?= Html::encode(date('Y-m-d H:i:s',$applicant->apply->apply_time)) ?></td>
+                        <td>
+                          <a class="btn btn-default btn-sm" href="#" role="button" <?php if($applicant->apply->is_recommend==1) echo "disabled='disabled'"; ?>>推荐该教员</a>
+                        </td>
           						</tr>
                   		<?php endforeach; ?>
                   		
@@ -131,9 +157,29 @@ $this->title = '家教业务表';
                   	 	<tr>
                   			<td colspan="4">&nbsp;</td>
                   		</tr>
-				     	<?php endforeach; ?>
-				     </table>
+				            	<?php endforeach; ?>
+
+                      <form method="post" action="<?= \Yii::$app->urlManager->createUrl(['business-admin/view','id'=>$business->id]) ?>">
+                      <tr>
+                        <td class="business_table_td" width="15%">收据编号</td><td width="40%"><input type="text" name="receipt"></td>
+                        <td class="business_table_td" width="15">收费事项</td><td width="30%"><input type="text" name="charges_item"></td>
+                      </tr>
+                      <tr>
+                        <td class="business_table_td">金额</td><td><input type="text" name="money"></td>
+                        <td class="business_table_td">收费人</td><td><input type="text" name="charges_people" value="<?= \Yii::$app->session['username'] ?>"></td>
+                      </tr>
+                      <tr>
+                        <td class="business_table_td">备注</td><td colspan="3"><textarea name="charges_remarks" rows="2"></textarea></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <input type="hidden" name="type" value="charge">
+                        <td colspan="3"><button type="submit" class="btn btn-default btn-sm">&nbsp;&nbsp;&nbsp;提交&nbsp;&nbsp;&nbsp;</button></td>
+                      </tr>
+                      </form>
+				            </table>
                   </div><!-- /.tab-pane -->
+
                   <div class="tab-pane" id="tab_3-2">
                     <table width="85%" class="table-bordered table-hover applicants_table">
                   		<?php foreach($business->recommend as $recommend):  ?>
@@ -155,6 +201,17 @@ $this->title = '家教业务表';
                   			<td colspan="7">&nbsp;</td>
                   		</tr>
                   		<?php endforeach; ?>
+                      <form method="post" action="<?= \Yii::$app->urlManager->createUrl(['business-admin/view','id'=>$business->id]) ?>">
+                      <tr>
+                        <td class="business_table_td">教员编号</td><td colspan="2"><input type="text" name="teacher_id"></td>
+                        <td class="business_table_td">推荐备注</td><td colspan="3"><textarea name="recommend_remarks" rows="2"></textarea></td>
+                        <input type="hidden" name="type" value="recommend">
+                      </tr>
+                      <tr>
+                        <td><button type="submit" class="btn btn-default btn-sm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;推荐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></td>
+                        <td colspan="6"></td>
+                      </tr>
+                      <form>
                   		
                   	</table>
                   </div><!-- /.tab-pane -->

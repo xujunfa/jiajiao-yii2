@@ -372,7 +372,7 @@ $session = \Yii::$app->session;
               <ul class="treeview-menu">
                 <li><a href="<?= \Yii::$app->urlManager->createUrl(['coach-admin/create']) ?>"><i class="fa fa-circle-o"></i> 发布家教</a></li>
                 <li><a href="<?= \Yii::$app->urlManager->createUrl(['coach-admin/admin']) ?>"><i class="fa fa-circle-o"></i> 家教管理</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> 业务登记</a></li>
+                <li><a href="<?= \Yii::$app->urlManager->createUrl(['business-admin/create']) ?>"><i class="fa fa-circle-o"></i> 业务登记</a></li>
                 <li><a href="<?= \Yii::$app->urlManager->createUrl(['business-admin/index']) ?>"><i class="fa fa-circle-o"></i> 业务管理</a></li>
                 <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> 待处理业务</a></li>
               </ul>

@@ -5,8 +5,9 @@ namespace backend\controllers;
 use backend\controllers\BackendController;
 use backend\models\Business;
 use backend\models\BusinessCharges;
-use backend\models\Recommend;
+use backend\models\BusinessRecommend;
 use yii\data\Pagination;
+use backend\models\Teacher;
 
 class BusinessAdminController extends BackendController
 {
@@ -33,6 +34,44 @@ class BusinessAdminController extends BackendController
 
 	public function actionView($id)
 	{
+		// var_dump($_POST);exit();
+		if($_POST['type'] == 'recommend')
+		{
+			$teacher = Teacher::find()->where('id=:id',[':id' => $_POST['teacher_id']])
+									  ->with('details')
+									  ->one();
+			if(!empty($teacher))
+			{
+				$recommend = new BusinessRecommend;
+				$recommend->business_id       = $id;
+				$recommend->teacher_id        = $teacher->id;
+				$recommend->contact           = $teacher->details->phone;
+				$recommend->recommend_time    = time();
+				$recommend->recommend_people  = \Yii::$app->session['userid'];
+				$recommend->recommend_remarks = $_POST['recommend_remarks'];
+				$recommend->result            = '已推荐';
+				if($recommend->save())
+				{
+					\Yii::$app->getSession()->setFlash('success', '推荐成功');
+				}
+			}
+		}
+		if($_POST['type'] == 'charge')
+		{
+			$charge = new BusinessCharges;
+			$charge->business_id     = $id;
+			$charge->charges_item    = $_POST['charges_item'];
+			$charge->receipt         = $_POST['receipt'];
+			$charge->money           = $_POST['money'];
+			$charge->charges_time    = time();
+			$charge->charges_people  = $_POST['charges_people'];
+			$charge->charges_remarks = $_POST['charges_remarks'];
+			if($charge->save())
+			{
+				\Yii::$app->getSession()->setFlash('success', '提交成功');
+			}
+		}
+
 		$business_info = Business::find()->where('id=:id',[':id' => $id])
 										 ->with(['charges', 'applicants', 'admin'])
 							     		 ->one();
@@ -43,6 +82,7 @@ class BusinessAdminController extends BackendController
 
 	public function actionCreate()
 	{
+		$defalt_number = 'J'.date('ymd',time());
 		if($_POST)
 		{
 			$business = new Business;
@@ -68,7 +108,9 @@ class BusinessAdminController extends BackendController
 			}
 			// var_dump($business);exit();
 		}
-		return $this->render('create');
+		return $this->render('create', [
+			'business_number' => $defalt_number,
+		]);
 	}
 
 	public function actionUpdate($id)
@@ -103,6 +145,16 @@ class BusinessAdminController extends BackendController
 		return $this->render('update', [
 			'business' => $business,
 		]);
+	}
+
+	public function actionTest()
+	{
+		\Yii::$app->getSession()->setFlash('success', '成功');
+		// $this->refresh();
+		// $falshes = \Yii::$app->getSession()->getAllFlashes();
+		// var_dump($falshes);
+		$flash = \Yii::$app->getSession()->hasFlash('success');
+		var_dump($flash);
 	}
 
 }
