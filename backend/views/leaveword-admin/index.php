@@ -2,6 +2,26 @@
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use backend\components\TimeLine; 
+use yii\bootstrap\Alert;
+
+$this->title = '交接班留言';
+
+if( \Yii::$app->getSession()->hasFlash('success') ) {
+  echo Alert::widget([
+    'options' => [
+      'class' => 'alert-success', //这里是提示框的class
+    ],
+    'body' => \Yii::$app->getSession()->getFlash('success'), //消息体
+  ]);
+}
+if( \Yii::$app->getSession()->hasFlash('error') ) {
+  echo Alert::widget([
+    'options' => [
+      'class' => 'alert-error',
+    ],
+    'body' => \Yii::$app->getSession()->getFlash('error'),
+  ]);
+}
  ?>
 
 <!-- row -->
@@ -59,7 +79,13 @@ use backend\components\TimeLine;
             <div class="timeline-footer">
               <?= Html::a('处理',['handle','id'=>$leaveword->id],['class'=>'btn btn-primary btn-xs']) ?>
               <!-- <a class="btn btn-primary btn-xs">处理</a> -->
-              <a class="btn btn-danger btn-xs">删除</a>
+              <?= Html::a('删除', ['delete', 'id' => $leaveword->id], [
+                 'class' => 'btn btn-danger btn-xs',
+                  'data' => [
+                     'confirm' => '你确定要删除这条留言吗？~(>_<)~',
+                     'method' => 'post',
+                  ],
+              ]) ?>
             </div>
           </div>
         </li>

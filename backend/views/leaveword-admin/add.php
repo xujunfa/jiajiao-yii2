@@ -1,5 +1,6 @@
 <?php 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
  ?>
 
 <div class="example-modal">
@@ -8,23 +9,19 @@ use yii\helpers\Html;
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <form method="post" action="<?= \Yii::$app->urlManager->createUrl(['leaveword-admin/add']) ?>">
+	        <?php $form = ActiveForm::begin(); ?>
 	        <span class="label label-primary">To</span>&nbsp;&nbsp;&nbsp;
 	        <span>
-	        	<select name="to_uid" class="form-control leaveword_select">
-	        		<?php foreach($admin_map as $id => $username): ?>
-	        			<option value="<?= $id ?>"><?= $username ?></option>
-	        		<?php endforeach; ?>
-	        	</select>
+	        	<?= $form->field($model, 'to_uid')->dropDownList($admin_map) ?>
 	        </span>
 	      </div>
 	      <div class="modal-body">
-	        <textarea class="form-control" name="content" rows="4" placeholder="请输入留言内容..."></textarea>
+	        <?= $form->field($model, 'content')->textarea(['placeholder' => '请输入留言内容...', 'rows' => 4]) ?>
 	      </div>
 	      <div class="modal-footer">
-	        <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-	        <button type="submit" class="btn btn-primary">提交留言</button>
-	        </form>
+	        <!-- <button type="button" class="btn btn-default pull-l	eft" data-dismiss="modal">Close</button> -->
+	        <?= Html::submitButton($model->isNewRecord ? '提交留言' : '更新信息', ['class' => 'btn btn-primary']) ?>
+	        <?php ActiveForm::end(); ?>
 	      </div>
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->

@@ -40,6 +40,7 @@ class CoachPosts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['business_id'], 'required'],
             // [['admin_id', 'business_id', 'student_situation', 'coach_content', 'coach_time', 'coach_address', 'coach_demand', 'coach_wage'], 'required'],
             // [['admin_id', 'business_id', 'limit_applicants', 'is_display', 'is_delete'], 'integer'],
             // [['student_situation', 'coach_content', 'coach_time', 'coach_address', 'coach_wage', 'limit_time'], 'string', 'max' => 128],
@@ -66,6 +67,7 @@ class CoachPosts extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'title' => '文章标题',
             'admin_id' => '发布人',
             'business_id' => '对应业务',
             'student_situation' => '学生情况',

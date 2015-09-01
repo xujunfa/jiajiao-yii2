@@ -36,35 +36,38 @@ class LeavewordAdminController extends BackendController
 
 	public function actionHandle($id)
 	{
-		$leaveword = Leaveword::find()->where('id=:id',[':id' => $id])
+		$model = Leaveword::find()->where('id=:id',[':id' => $id])
 									  ->with('from','to')
 									  ->one();
-		if($_POST)
+		if($model->load(\Yii::$app->request->post()))
 		{
-			$leaveword->handle_remarks = $_POST['remarks'];
-			$leaveword->handle_uid     = \Yii::$app->session['userid'];
-			$leaveword->handle_time    = time();
-			$leaveword->is_handle      = 1;
-			if($leaveword->save())
-				echo "<h1>OK</h1>";exit();	
+			$model->handle_uid     = \Yii::$app->session['userid'];
+			$model->handle_time    = time();
+			$model->is_handle      = 1;
+			if($model->validate() && $model->save())
+			{
+				\Yii::$app->getSession()->setFlash('success', '处理成功！^_^');
+				$this->redirect(['leaveword-admin/index']);
+			}
 		}
 		
 		return $this->render('handle', [
-			'leaveword' => $leaveword,
+			'model' => $model,
 		]);
 	}
 
 	public function actionAdd()
 	{
-		$leaveword = new Leaveword;
-		if($_POST)
+		$model = new Leaveword;
+		if($model->load(\Yii::$app->request->post()))
 		{
-			$leaveword->to_uid     = $_POST['to_uid'];
-			$leaveword->content    = $_POST['content'];
-			$leaveword->leave_time = time();
-			$leaveword->leave_uid  = \Yii::$app->session['userid'];
-			if($leaveword->save())
-				echo "<h1>留言成功</h1>";exit();
+			$model->leave_time = time();
+			$model->leave_uid  = \Yii::$app->session['userid'];
+			if($model->validate() && $model->save())
+			{
+				\Yii::$app->getSession()->setFlash('success', '留言成功！^_^');
+				$this->redirect(['leaveword-admin/index']);
+			}
 		}
 		$admins = Admin::findBySql('SELECT id,username FROM tbl_admin')->asArray()->all();
 		$admin_map[0] = '所有人';
@@ -75,8 +78,30 @@ class LeavewordAdminController extends BackendController
 		unset($admin_map[\Yii::$app->session['userid']]);
 		// var_dump($admin_map);exit();
 		return $this->render('add', [
+			'model'     => $model,
 			'admin_map' => $admin_map,
 		]);
 	}
+
+	public function actionDelete($id)
+	{
+		$leaveword = $this->findModel($id);
+		if($leaveword->delete())
+		{
+			\Yii::$app->getSession()->setFlash('success', '留言已删除！^_^');
+		}else{
+			\Yii::$app->getSession()->setFlash('error', '留言删除失败！~(>_<)~');
+		}
+		$this->redirect(['index']);
+	}
+
+	protected function findModel($id)
+    {
+        if (($model = Leaveword::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 
 }

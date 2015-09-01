@@ -1,0 +1,57 @@
+.content{
+	width: 1128px;
+	margin: auto;
+    clear: both;
+    background-color: #ffffff;
+    padding-bottom: 2px;
+/*    height: 400px;*/
+}
+.quehead{
+	padding: 20px 30px;
+	border-bottom: 1px solid #dddddd;
+    clear: both;
+    /*background-color: #f7f8ff;*/
+}
+.quehead h3{
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+}
+/*联系我们*/
+.bg2{
+	width: 340px;
+/*	height: 400px;*/
+	overflow: hidden;
+	margin: auto;
+	margin-top: 30px;
+	margin-bottom: 40px;
+	background: url(../image/bg2.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	padding:66px 20px 50px 60px;
+}
+.bg2 p{
+	line-height: 34px;
+	color: #333333;
+	font-size: 18px;
+	padding-left: 10px;
+}
+/*市场部简介*/
+.bg1{
+	width: 580px;
+	height: 540px;
+	overflow: hidden;
+	margin: auto;
+	margin-top: 5px;
+	margin-bottom: 60px;
+	background: url(../image/bg3.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	padding:76px 20px 30px 60px;
+}
+.bg1 p{
+	line-height: 34px;
+	color: #333333;
+	font-size: 18px;
+	padding: 36px 30px 5px 34px;
+}

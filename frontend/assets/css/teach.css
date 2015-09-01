@@ -1,0 +1,141 @@
+.content{
+	min-height:400px;
+	width: 1120px;
+	background-color: white;
+	margin: auto;
+}
+/*头部*/
+.teachhead{
+	padding: 20px 30px;
+	border-bottom: 1px solid #dddddd;
+}
+.teachhead input{
+	padding: 5px 10px;
+	border: 1px solid #282e78;
+	color: #282e78;
+	border-radius: 5px;
+	background-color: white;
+	margin-right: 14px;
+}
+.teachhead input:hover{
+	background-color: #282e78;
+	color: white;
+}
+.teachhead .teactive{
+	background-color: #282e78;
+	color: white;
+}
+/*列表*/
+.teachitem{
+	width: 100%;
+	height: 110;
+	/*background-color: yellow;*/
+    position: relative;
+    clear: both;
+}
+.teachbox{
+	width: 100px;
+	height: 70px;
+	margin: 20px 20px 20px 40px;
+	background-color: #007ec5;
+	border-radius: 8px;
+	float: left;
+}/*b0b6fe*/
+.m{
+	background-color: #aaaaaa;
+}
+.teachbox p{
+	color: white;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	width: 100%;
+	font-size: 18px;
+	font-family: arial;
+}
+.teanum{
+	border-bottom: 1px solid white;
+}
+.teacont{
+	width: 500px;
+	float: left;
+	height: 70px;
+}
+.teatitle{
+	font-size: 17px;
+	color: #555555;
+	width: 500px;
+	float: left;
+	margin: 20px 16px 2px 16px;
+}
+.teacont a{
+	float: left;
+}
+.teacont a:hover span{
+	color: #888888;
+}
+.teatitle span{
+	float: left;
+	height: 30px;
+	line-height: 30px;
+/*	font-weight: bold;*/
+	margin: 0 5px;
+}
+.teaother{
+	float: left;
+	width: 500px;
+	height: auto;
+	margin: 2px 20px;
+}
+.teaother span{
+	display: block;
+	height: 26px;
+	line-height: 26px;
+	padding: 0 6px;
+	margin:  6px 5px; 
+	/*background-color: #9ddcff;*/
+	border: 1px solid #42bbfe;
+	border-radius: 4px;
+	float: left;
+	color: #42bbfe;
+	font-size: 14px;
+}
+.teamsg{
+	width: 400px;
+	height: 30px;
+	line-height: 30px;
+	position: absolute;
+	right: 30px; top: 20px;
+}
+.teamsg p{
+    float: right;
+    height: 30px;
+    line-height: 30px;
+}
+.time{
+	margin: 0 20px;
+	font-size: 14px;
+	color: #bbbbbb;
+}
+.going{
+	color: #44cc56;
+	font-size: 15px;
+	margin: 0 10px;
+}
+.over{
+	color: #f09450;
+	font-size: 15px;
+	display: none;
+}
+.tip{
+	color: #44cc56;
+	font-size: 15px;
+}
+.line{
+	width: 96%;
+	height: 1px;
+	margin: auto;
+	clear: both;
+/*	padding-top: 20px;*/
+	border-bottom: 1px solid #dddddd
+}

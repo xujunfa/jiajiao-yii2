@@ -1,0 +1,96 @@
+.content{
+	width: 1128px;
+	margin: auto;
+    clear: both;
+    min-height: 500px;
+}
+.newsbox{
+	width: 272px;
+	height: 330px;
+	float: left;
+	margin: 4px;
+	background-color: white;
+	border-bottom: 1px #dddddd solid;
+	border-right: 1px #dddddd solid;
+	border-radius: 4px;
+	overflow: hidden;
+}
+.newstitle{
+	width: 100%;
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+}
+.newstitle img{
+	width: 100%;
+}
+.tbc{
+	padding: 8px 10px;
+	background-color: black;
+	opacity: 0.5;
+	position: absolute;
+	bottom: 0px;
+	height: 44px;
+	width: 98%;
+}
+.newstitle h4{
+	display: block;
+	padding: 8px 10px;
+/*	width: 100%;*/
+	line-height: 22px;
+	position: absolute;
+	bottom: 0px;
+	color: white;
+	font-size: 15px;
+    
+}
+.newsimple{
+	padding: 14px;
+	/*background-color: #fafbff;*/
+	height: 102px;
+}
+.newsimple p{
+	font-size: 14px;
+	color: #777777;
+	line-height: 20px;
+}
+
+/*********************正文*********************/
+.newsmaintitle{
+	width: 100%;
+	background-color: white;
+	padding: 20px 0;
+	border-bottom: 1px solid #dddddd;
+	clear: both;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+.newsmaintitle h3{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+.newsmaintitle p{
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #aaaaaa;
+    text-align: center;
+}
+.newscont{
+/*	width: 100%;*/
+    padding: 30px 56px;
+    clear: both;
+    background-color: white;
+}
+.newscont img{
+	max-width: 400px;
+	float: right;
+	margin-left: 34px;
+	margin-bottom: 30px;
+}
+.newscont p{
+	line-height: 26px;
+	font-size: 15px;
+	color: #666666;
+}

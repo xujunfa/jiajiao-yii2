@@ -1,0 +1,121 @@
+.content{
+	min-height:400px;
+	width: 1120px;
+	background-color: white;
+	margin: auto;
+}
+.teachitem{
+	width: 100%;
+	height: 110;
+	/*background-color: yellow;*/
+    position: relative;
+    clear: both;
+}
+.teachbox{
+	width: 120px;
+	height: 70px;
+	margin: 20px 20px 20px 40px;
+	background-color: #007ec5;
+	border-radius: 8px;
+	float: left;
+}
+.teachbox p{
+	color: white;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	width: 100%;
+	font-size: 18px;
+	font-family: arial;
+}
+.teanum{
+	border-bottom: 1px solid white;
+}
+.teacont{
+	width: 500px;
+	float: left;
+	height: 70px;
+}
+.teatitle{
+	font-size: 17px;
+	color: #555555;
+	width: 500px;
+	height: 30px;
+	line-height: 30px;
+/*	float: left;*/
+	margin: 16px 16px 0 16px;
+}
+/*.teacont a{
+	float: left;
+}*/
+.teacont a:hover p{
+	color: #888888;
+}
+.teareq{
+	font-size: 14px;
+	color: #aaaaaa;
+	height: 16px;
+	line-height: 16px;
+	margin-left: 18px;
+	overflow: hidden;
+}
+/*.teaother{
+	float: left;
+	width: 500px;
+	height: auto;
+	margin: 2px 20px;
+}*/
+.teaother span{
+	/*width: 200px;
+	text-align: center;*/
+	display: block;
+	height: 24px;
+	line-height: 24px;
+	padding: 0 6px;
+	margin:  8px 18px; 
+	/*background-color: #9ddcff;*/
+	border: 1px solid #42bbfe;
+	border-radius: 4px;
+	float: left;
+	color: #42bbfe;
+	font-size: 14px;
+}
+.teamsg{
+	width: 400px;
+	height: 30px;
+	line-height: 30px;
+	position: absolute;
+	right: 30px; top: 20px;
+}
+.teamsg p{
+    float: right;
+    height: 30px;
+    line-height: 30px;
+}
+.time{
+	margin: 0 20px;
+	font-size: 14px;
+	color: #bbbbbb;
+}
+.going{
+	color: #44cc56;
+	font-size: 15px;
+	margin: 0 10px;
+}
+.over{
+	color: #f09450;
+	font-size: 15px;
+	display: none;
+}
+.tip{
+	color: #44cc56;
+	font-size: 15px;
+}
+.line{
+	width: 96%;
+	height: 1px;
+	margin: auto;
+	clear: both;
+/*	padding-top: 20px;*/
+	border-bottom: 1px solid #dddddd
+}

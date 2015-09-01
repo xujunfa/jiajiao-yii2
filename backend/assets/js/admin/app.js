@@ -27,7 +27,24 @@ if (typeof jQuery === "undefined") {
  *              prevents conflict with other plugins and is a better
  *              way to organize our code.
  */
-$.AdminLTE = {};
+
+
+/* ------------------
+ * - Implementation -
+ * ------------------
+ * The next block of code implements AdminLTE's
+ * functions and plugins as specified by the
+ * options above.
+ */
+$(function () {
+  //Extend options if external options exist
+  if (typeof AdminLTEOptions !== "undefined") {
+    $.extend(true,
+            $.AdminLTE.options,
+            AdminLTEOptions);
+  }
+
+  $.AdminLTE = {};
 
 /* --------------------
  * - AdminLTE Options -
@@ -131,21 +148,6 @@ $.AdminLTE.options = {
     lg: 1200
   }
 };
-
-/* ------------------
- * - Implementation -
- * ------------------
- * The next block of code implements AdminLTE's
- * functions and plugins as specified by the
- * options above.
- */
-$(function () {
-  //Extend options if external options exist
-  if (typeof AdminLTEOptions !== "undefined") {
-    $.extend(true,
-            $.AdminLTE.options,
-            AdminLTEOptions);
-  }
 
   //Easy access to options
   var o = $.AdminLTE.options;

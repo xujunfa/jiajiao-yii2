@@ -1,0 +1,135 @@
+/*color list
+  @color #01144f;深蓝
+ */
+/*********** all clear ***********/
+*{
+	margin: 0;
+	padding: 0;
+	font-size: 微软雅黑;
+	font-size: 16px 100% 1.6em;
+	color: #01144f;
+}
+body{
+	margin: 0;
+	padding: 0;
+	background-color: #ebebeb;
+}
+ul li{
+	list-style: none;
+	display: block;
+}
+a{
+	text-decoration: none;
+	display: block;
+}
+p,span{display: block;}
+.clear{clear: both;}
+/************  头部  *************/
+/*顶部栏*/
+.topHead{
+    background-color:#01144f;
+    width: 100%;
+    min-width: 1288px;
+    height: 36px;
+    clear: both;
+}
+.topHead ul{
+	float: right;
+	margin-right: 100px;
+	/*position: relative;
+	bottom: 36px;*/
+}
+.topHead li{
+	padding: 0 6px;
+	height: 36px;
+	line-height: 36px;
+	float: left;
+	color: white;
+}
+.topHead li a{
+	color: white;
+	font-size: 14px;
+}
+.manager{
+	float: left;
+	color: white;
+	width: 300px;
+	height: 36px;
+	line-height: 36px;
+	margin-left: 100px;
+}
+/*头部导航*/
+.head{
+    min-width: 1288px;
+    margin:auto;
+    height: 100px;
+}
+.logo{
+	 width:420px; 
+     margin:  20px 0 20px 70px;
+     float: left;
+}
+.logo img{width: 100%;}
+.mainnav{
+	 /*width:460px;*/ 
+     float: right;
+     margin-right: 100px;
+     margin-top: 30px;
+     /*position: relative;
+     bottom: 60px;*/
+}
+.mainnav li{
+	float: left;
+	/*padding: 0 14px;
+	height: 30px;
+	line-height: 30px;*/
+}
+.mainnav li a{
+	padding: 0 14px;
+	height: 30px;
+	line-height: 30px;
+}
+.mainnav li a:hover{
+	padding: 0 14px;
+	/*display: block;*/
+	height: 30px;
+	line-height: 30px;
+	background-color: #aaaaaa;
+	color: white;
+    border-radius: 4px;
+}
+.mainnav .active{
+	padding: 0 14px;
+	/*display: block;*/
+	height: 30px;
+	line-height: 30px;
+	background-color: #282e78;
+	color: white;
+    border-radius: 4px;
+}
+/************主体************/
+
+/********************footer*********************/
+
+.footer{
+	width: 100%;
+	min-width: 1288px;
+	height: 160px;
+    background-color: gray;
+    margin-top: 20px;
+    clear: both;
+}
+.footer table{
+	width: 1024px;
+	margin: auto;
+    padding: 30px;
+}
+.footer table td{
+	width: 25%;
+	height: 30px;
+	line-height: 30px;
+	color: white;
+	text-align: center;
+	font-family: arial;
+	font-size: 14px;
+}

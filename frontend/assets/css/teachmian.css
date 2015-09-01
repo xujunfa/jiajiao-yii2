@@ -1,0 +1,125 @@
+.content{
+	min-height:400px;
+	width: 1120px;
+
+	margin: auto;
+}
+.teatitle{
+	width: 100%;
+	height: 100px;
+	border-bottom: 1px solid #dddddd;
+/*	margin-bottom: 6px;*/
+	background-color: white;
+}
+.teatitle h3{
+	display: block;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+}
+.teatitle p{
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+	text-align: center;
+	color: #aaaaaa;
+}
+.teamain{
+	width: 100%;
+	background-color: white;
+	padding: 0.5px 0;
+/*	margin-bottom: 10px;*/
+}
+.teamain .table{
+	width: 100%;
+    border-collapse:collapse;
+}
+.table td{
+	padding: 14px 30px;
+	line-height: 30px;
+    border: 1px solid #eeeeee;
+}
+.table th{
+    width: 280px;
+    text-align: center;
+    padding: 16px 0;
+    background-color: #d0d1ff;
+    border: 1px solid #ffffff;
+    outline: none;
+    color: #01144f;
+}
+/*详情页脚*/
+.teaomg{
+	width: 99.8%;
+	padding: 20px 0;
+	background-color: white;
+	border: 1px dotted #d0d1ff;
+	/*margin-top: 2px;*/
+	margin-bottom: 6px;
+	/*position: absolute;
+	right: 24px;
+	bottom: 20px;*/
+}
+.teaomg p{
+	height: 24px;
+	line-height: 24px;
+	text-align: right;
+	padding-right: 30px;
+	color: #aaaaaa;
+}
+.teasign{
+	float: left;
+	position: relative;
+	background-color: red;
+}
+.teasign input{
+	padding: 10px 20px;
+	background-color: #44cc56;
+	color: white;
+	border: 1px solid #44cc56;
+	position: absolute;
+	left: 80px; top:10px;
+	font-size: 20px;
+}
+.teasign p{
+	color: #888888;
+	position: absolute;
+	left: 200px;
+	top:22px;
+	width: 120px;
+}
+.teasign p span{
+	color: red;
+	display: inline;
+}
+/*llist*/
+.teasignlist{
+	padding-bottom: 30px;
+	background-color: white;
+}
+.teasignlist .tealisthead{
+	padding: 14px;
+}
+.teasignlist .tealisthead p{
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+}
+.teasignlist table{
+	width: ;
+	margin: auto;
+	 border-collapse:collapse;
+}
+.teasignlist td{
+	width: 80px;
+	padding: 10px 20px;
+	text-align: center;
+	border: 1px solid #cccccc;
+}
+.teasignlist thead td{
+	background-color: #007ec5;
+	color: white;
+}

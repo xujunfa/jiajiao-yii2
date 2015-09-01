@@ -28,6 +28,8 @@ $session = \Yii::$app->session;
     <!-- jQuery 2.1.4 -->
     <script src="<?= Html::encode(\Yii::$app->params['backend_assets']).'plugins/' ?>jQuery-2.1.4.min.js"></script>
     <script src="<?= Html::encode(\Yii::$app->params['backend_assets']).'js/plugins/'; ?>jquery.validate.js"></script>
+    <!-- AdminLTE App -->
+    <script src="<?= Html::encode(\Yii::$app->params['backend_assets']).'js/admin/' ?>app.js" type="text/javascript"></script>
     <style>
       td{
         text-align:center;
@@ -97,6 +99,27 @@ $session = \Yii::$app->session;
       .leaveword_select{
         display: inline;
         width: 20%;
+      }
+      .business-create-form label {
+        display: none;
+      }
+      .form-group.field-business-business_number {
+        display: inline;
+      }
+      .business-create-label {
+        margin-bottom: 2px;
+      }
+
+      .field-leaveword-to_uid {
+        display: inline;
+      }
+      .field-leaveword-content label,.field-leaveword-to_uid label,
+      .field-leaveword-handle_remarks label {
+        display: none;
+      }
+      .field-leaveword-to_uid select{
+        width: 20%;
+        display: inline;
       }
     </style>
   </head>
@@ -357,7 +380,7 @@ $session = \Yii::$app->session;
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> 基本信息</a></li>
+                <li><a href="<?= \Yii::$app->urlManager->createUrl(['site-admin/base']) ?>"><i class="fa fa-circle-o"></i> 基本信息</a></li>
                 <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> 轮显图片</a></li>
                 <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> 友情链接</a></li>
               </ul>
@@ -374,7 +397,7 @@ $session = \Yii::$app->session;
                 <li><a href="<?= \Yii::$app->urlManager->createUrl(['coach-admin/admin']) ?>"><i class="fa fa-circle-o"></i> 家教管理</a></li>
                 <li><a href="<?= \Yii::$app->urlManager->createUrl(['business-admin/create']) ?>"><i class="fa fa-circle-o"></i> 业务登记</a></li>
                 <li><a href="<?= \Yii::$app->urlManager->createUrl(['business-admin/index']) ?>"><i class="fa fa-circle-o"></i> 业务管理</a></li>
-                <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> 待处理业务</a></li>
+                <li><a href="<?= \Yii::$app->urlManager->createUrl(['business-admin/pending']) ?>"><i class="fa fa-circle-o"></i> 待处理业务</a></li>
               </ul>
             </li>
 
@@ -657,8 +680,6 @@ $session = \Yii::$app->session;
     <!-- Bootstrap 3.3.2 JS -->
     <script src="<?= Html::encode(\Yii::$app->params['backend_assets']).'js/admin/' ?>bootstrap.min.js" type="text/javascript"></script>
     
-    <!-- AdminLTE App -->
-    <script src="<?= Html::encode(\Yii::$app->params['backend_assets']).'js/admin/' ?>app.min.js" type="text/javascript"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="<?= Html::encode(\Yii::$app->params['backend_assets']).'js/admin/' ?>pages/dashboard.js" type="text/javascript"></script>
     <!-- AdminLTE for demo purposes -->

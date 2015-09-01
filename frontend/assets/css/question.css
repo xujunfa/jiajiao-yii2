@@ -1,0 +1,72 @@
+.content{
+	width: 1128px;
+	margin: auto;
+    clear: both;
+    background-color: white;
+    min-height: 500px;
+}
+.quehead{
+	padding: 20px 30px;
+	border-bottom: 1px solid #dddddd;
+    clear: both;
+    /*background-color: #f7f8ff;*/
+}
+.quehead h3{
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+}
+.quelist{
+	padding: 30px;
+}
+.quelist ul li{
+	height: 40px;
+	line-height: 40px;
+	width: 530px;
+	float: left;
+	list-style: disc;
+	overflow: hidden;
+}
+.quelist a{
+	height: 40px;
+	line-height: 40px;
+	color: #666666;
+	padding:0 20px;
+}
+.quelist a:hover{
+	background-color: #eeeeee;
+	color: #01144f;
+}
+/*常见问题正文*/
+.quetitle{
+	width: 100%;
+	background-color: white;
+	padding: 20px 0;
+	border-bottom: 1px solid #dddddd;
+	clear: both;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+.quetitle h3{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+.quetitle p{
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #aaaaaa;
+    text-align: center;
+}
+.quecont{
+/*	width: 100%;*/
+    padding: 30px 70px;
+    clear: both;
+    background-color: white;
+}
+.quecont p{
+	line-height: 30px;
+	font-size: 16px;
+	color: #333333;
+}

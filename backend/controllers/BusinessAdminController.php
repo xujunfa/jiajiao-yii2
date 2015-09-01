@@ -15,7 +15,7 @@ class BusinessAdminController extends BackendController
 
 	public function actionIndex()
 	{
-		$businesses = Business::find();
+		$businesses = Business::find()->where('is_delete=:d', ['d' => 0]);
 		$pagination = new Pagination([
 			'defaultPageSize' => 7,
 			'totalCount'      => $businesses->count(),
@@ -28,6 +28,24 @@ class BusinessAdminController extends BackendController
 		// var_dump($businesses[0]);
 		return $this->render('index', [
 			'businesses' => $businesses,
+			'pagination' => $pagination,
+		]);
+	}
+
+	public function actionPending()
+	{
+		$pending_businesses = Business::find()->where('is_recommend=:r', [':r' => 0]);
+		$pagination = new Pagination([
+			'defaultPageSize' => 7,
+			'totalCount'      => $pending_businesses->count(),
+		]);
+		$pending_businesses = $pending_businesses->offset($pagination->offset)
+							     				 ->limit($pagination->limit)
+							     				 ->with(['charges', 'applicants', 'admin', 'post'])
+							     				 ->orderBy(['id'=>SORT_DESC])
+							     				 ->all();
+		return $this->render('pending', [
+			'businesses' => $pending_businesses,
 			'pagination' => $pagination,
 		]);
 	}
@@ -52,7 +70,7 @@ class BusinessAdminController extends BackendController
 				$recommend->result            = '已推荐';
 				if($recommend->save())
 				{
-					\Yii::$app->getSession()->setFlash('success', '推荐成功');
+					\Yii::$app->getSession()->setFlash('success', '推荐成功！^_^');
 				}
 			}
 		}
@@ -68,7 +86,7 @@ class BusinessAdminController extends BackendController
 			$charge->charges_remarks = $_POST['charges_remarks'];
 			if($charge->save())
 			{
-				\Yii::$app->getSession()->setFlash('success', '提交成功');
+				\Yii::$app->getSession()->setFlash('success', '提交成功！^_^');
 			}
 		}
 
@@ -82,69 +100,56 @@ class BusinessAdminController extends BackendController
 
 	public function actionCreate()
 	{
+		$model = new Business;
 		$defalt_number = 'J'.date('ymd',time());
-		if($_POST)
+		if($model->load(\Yii::$app->request->post()) && $model->validate())
 		{
-			$business = new Business;
-			$business->business_number   = $_POST['business_number'];
-			$business->customer_name     = $_POST['customer_name'];
-			$business->last_time         = $_POST['last_time'];
-			$business->phone             = $_POST['phone'];
-			$business->telephone 	     = $_POST['telephone'];
-			$business->student_message   = $_POST['student_message'];
-			$business->coach_time        = $_POST['coach_time'];
-			$business->student_situation = $_POST['student_situation'];
-			$business->requirement       = $_POST['requirement'];
-			$business->address           = $_POST['address'];
-			$business->traffic           = $_POST['traffic'];
-			$business->reward            = $_POST['reward'];
-			$business->remarks           = $_POST['remarks'];
-			$business->admin_id          = \Yii::$app->session['userid'];
-			$business->registered_time   = time();
-			var_dump($business->save());
-			if($business->save())
+			$model->admin_id        = \Yii::$app->session['userid'];
+			$model->registered_time = time();
+			if($model->save())
 			{
-				$this->redirect(['business-admin/index']);
+				\Yii::$app->getSession()->setFlash('success', '已登记业务表！^_^');
+				$this->redirect(['business-admin/view', 'id' => $model->id]);
 			}
 			// var_dump($business);exit();
 		}
 		return $this->render('create', [
+			'model' => $model,
 			'business_number' => $defalt_number,
 		]);
 	}
 
 	public function actionUpdate($id)
 	{
-		$business = Business::find()->where('id=:id',[':id' => $id])
-									->with(['charges', 'applicants', 'admin'])
-									->one();
-		if($_POST)
+		$model = Business::find()->where('id=:id',[':id' => $id])
+								 ->with(['charges', 'applicants', 'admin'])
+								 ->one();
+		if($model->load(\Yii::$app->request->post()) && $model->validate())
 		{
-			$business->business_number   = $_POST['business_number'];
-			$business->customer_name     = $_POST['customer_name'];
-			$business->last_time         = $_POST['last_time'];
-			$business->phone             = $_POST['phone'];
-			$business->telephone 	     = $_POST['telephone'];
-			$business->student_message   = $_POST['student_message'];
-			$business->coach_time        = $_POST['coach_time'];
-			$business->student_situation = $_POST['student_situation'];
-			$business->requirement       = $_POST['requirement'];
-			$business->address           = $_POST['address'];
-			$business->traffic           = $_POST['traffic'];
-			$business->reward            = $_POST['reward'];
-			$business->remarks           = $_POST['remarks'];
-			$business->admin_id          = \Yii::$app->session['userid'];
-			$business->registered_time   = time();
-			var_dump($business->save());
-			if($business->save())
+			if($model->save())
 			{
-				$this->redirect(['business-admin/index']);
+				\Yii::$app->getSession()->setFlash('success', '已更新业务表信息！^_^');
+				$this->redirect(['business-admin/view', 'id' => $model->id]);
 			}
-			// var_dump($business);exit();
 		}
+
 		return $this->render('update', [
-			'business' => $business,
+			'model'           => $model,
+			'business_number' => $defalt_number,
 		]);
+	}
+
+	public function actionDelete($id)
+	{
+		$model = $this->findModel($id);
+
+        $model->is_delete = 1;
+
+        if($model->save())
+        {
+          \Yii::$app->getSession()->setFlash('success', '已删除业务表'.$model->business_number.'！^_^');
+          return $this->redirect(['index']);
+        }
 	}
 
 	public function actionTest()
@@ -156,5 +161,14 @@ class BusinessAdminController extends BackendController
 		$flash = \Yii::$app->getSession()->hasFlash('success');
 		var_dump($flash);
 	}
+
+	protected function findModel($id)
+    {
+        if (($model = Business::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 
 }

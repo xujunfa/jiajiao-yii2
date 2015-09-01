@@ -5,11 +5,7 @@ use yii\bootstrap\Alert;
 
 $this->title = '家教业务表';
 
- ?>
-
- <?php 
-
- if( \Yii::$app->getSession()->hasFlash('success') ) {
+if( \Yii::$app->getSession()->hasFlash('success') ) {
   echo Alert::widget([
     'options' => [
       'class' => 'alert-success', //这里是提示框的class
@@ -17,14 +13,14 @@ $this->title = '家教业务表';
     'body' => \Yii::$app->getSession()->getFlash('success'), //消息体
   ]);
 }
-// if( \Yii::$app->getSession()->hasFlash('error') ) {
-//   echo Alert::widget([
-//     'options' => [
-//       'class' => 'alert-error',
-//     ],
-//     'body' => \Yii::$app->getSession()->getFlash('error'),
-//   ]);
-// }
+if( \Yii::$app->getSession()->hasFlash('error') ) {
+  echo Alert::widget([
+    'options' => [
+      'class' => 'alert-error',
+    ],
+    'body' => \Yii::$app->getSession()->getFlash('error'),
+  ]);
+}
 
  ?>
 
@@ -39,6 +35,9 @@ $this->title = '家教业务表';
                 'method' => 'post',
             ],
         ]) ?>
+        <?php if($business->has_post == 0): ?>
+          <?= '&nbsp;&nbsp;&nbsp;&nbsp;'.Html::a('发布家教', ['coach-admin/create', 'id' => $business->id], ['class' => 'btn btn-success']) ?>
+        <?php endif; ?>
     </p>
 
     <div class="box table_box">
